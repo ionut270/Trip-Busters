@@ -17,6 +17,9 @@ class App extends React.Component {
           <Route path='/'>
             <Auth />
           </Route>
+          <Route path='/login'>
+            <Auth />
+          </Route>
           <Route path='/profile'>
             <Profile />
           </Route>

@@ -18,7 +18,7 @@ export default class Auth extends React.Component {
           <p> Select authentification method. </p>
           <Button id="google_button" compact basic onClick={(e)=>{
             e.preventDefault();
-            window.location.href=`${config.server}:${config.port}/auth/google`
+            window.location.href=`${config.server}/auth/google`
           }}>
             <img
               className="unselectable"

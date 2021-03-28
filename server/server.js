@@ -2,28 +2,29 @@
 require("dotenv").config();
 console.out = (str) => console.log(`${Date.now()} : ${str}`)
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const passport = require("passport");
-const cookieParser = require('cookie-parser');
-const { Datastore } = require('@google-cloud/datastore');
-const { DatastoreStore } = require('@google-cloud/connect-datastore');
-const session = require('express-session');
-const app = express();
+const express               = require("express");
+const bodyParser            = require("body-parser");
+const cors                  = require("cors");
+const passport              = require("passport");
+const cookieParser          = require('cookie-parser');
+const { Datastore }         = require('@google-cloud/datastore');
+const { DatastoreStore }    = require('@google-cloud/connect-datastore');
+const session               = require('express-session');
+const path                  = require('path');
+const app                   = express();
 
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('client/build'));
+app.use(express.static(path.join(__dirname +`/../client/build`)));
 
 /** ======== Session store ======== */
 app.use(session({
     store: new DatastoreStore({
         kind: 'express-sessions',
         name: 'trip-busters',
-        expirationMs: 0,
+        expirationMs: 1000*60*60*24, // 24 h
         dataset: new Datastore({
             projectId: process.env.GCLOUD_PROJECT,
             keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
