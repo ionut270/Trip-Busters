@@ -1,4 +1,4 @@
 module.exports = {
-    server : "http://localhost",
-    port   : "8080"
+    server : "https://delta-309009.ey.r.appspot.com",
+    port   : "80"
 }
