@@ -1,0 +1,26 @@
+{
+  "name": "trip-busters",
+  "version": "1.0.0",
+  "description": "AN user selects a location on the web interface using Maps JavaScript API, that location is sent trough an email to another user using Gmail API, checks to see when that person is available, and generates a path between him and the selected location by the first user using Directions API.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionut270/Trip-Busters.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ionut270/Trip-Busters/issues"
+  },
+  "homepage": "https://github.com/ionut270/Trip-Busters#readme",
+  "dependencies": {
+    "@google-cloud/datastore": "^6.3.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
