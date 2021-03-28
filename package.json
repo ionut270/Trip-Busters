@@ -1,28 +1,35 @@
 {
   "name": "trip-busters",
   "version": "1.0.0",
-  "description": "AN user selects a location on the web interface using Maps JavaScript API, that location is sent trough an email to another user using Gmail API, checks to see when that person is available, and generates a path between him and the selected location by the first user using Directions API.",
-  "main": "index.js",
+  "description": "App that sends a mail to a user, with a location to go to",
+  "main": "./server/server.js",
   "scripts": {
-    "start": "node ./server/server.js"
+    "start": "node ./server/server.js",
+    "dev"  : "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ionut270/Trip-Busters.git"
   },
-  "author": "",
+  "authors": "Oancea Ionut Eugen, Marius Dinu, Florin Dominite, Cotiuga Ilie",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ionut270/Trip-Busters/issues"
   },
   "homepage": "https://github.com/ionut270/Trip-Busters#readme",
   "dependencies": {
+    "@google-cloud/connect-datastore": "^5.0.2",
     "@google-cloud/datastore": "^6.3.1",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3"
+    "express-session": "^1.17.1",
+    "googleapis": "^68.0.0",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-google-oauth2": "^0.2.0"
   }
 }

@@ -1,0 +1,57 @@
+#login{
+    min-height: calc(100vh - 60px) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+#main_logo{
+    width: 400px;
+}
+
+#google_button{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44.5px;
+}
+
+#google_logo{
+    width: 2em;
+    margin-right:1em;
+}
+
+#auth_container{
+    width: 400px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+#quote{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+}
+
+.blue{
+    color: rgb(23, 166, 255);
+}
+
+@media (orientation: portrait) {
+    #main_logo{
+        padding: 40px;
+    }
+    #quote{
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        font-size: 14px;
+    }
+    #auth_container{
+        max-width: 90% !important;
+    }
+}
