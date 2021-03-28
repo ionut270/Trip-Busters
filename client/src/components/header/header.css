@@ -1,0 +1,15 @@
+#header{
+    margin: 0 !important;
+    height: 60px !important;
+}
+
+#logo{
+    height: 40px;
+    width: auto;
+    margin: 10px !important;
+}
+
+.ui.menu>.item:first-child {
+    padding: 0px !important;
+    margin: 0px !important;
+}

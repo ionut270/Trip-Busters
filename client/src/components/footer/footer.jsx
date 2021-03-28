@@ -1,11 +1,11 @@
 import React from "react";
-import logoIcon from "../Logo/icon.png";
+import logoIcon from "../../Logo/icon.png";
 import { Segment } from "semantic-ui-react";
 
 import "./footer.css";
 
 
-export default class Auth extends React.Component {
+export default class Footer extends React.Component {
   render() {
     return (
       <Segment id="footer">

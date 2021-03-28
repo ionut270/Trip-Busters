@@ -1,0 +1,7 @@
+#profile{
+    min-height: calc(100vh - 60px - 60px) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}

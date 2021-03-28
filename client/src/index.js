@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 
 import Auth     from './pages/auth/auth';
 import Profile  from './pages/profile/profile'
-import Footer   from "./components/footer"
+import Footer   from "./components/footer/footer"
+import Header   from "./components/header/header"
 
 import 'semantic-ui-css/semantic.min.css'
 import './styles/index.css'
@@ -14,14 +15,12 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
+          <Route path='/profile'>
+            <Header />
+            <Profile />
+          </Route>
           <Route path='/'>
             <Auth />
-          </Route>
-          <Route path='/login'>
-            <Auth />
-          </Route>
-          <Route path='/profile'>
-            <Profile />
           </Route>
         </Switch>
         <Footer />

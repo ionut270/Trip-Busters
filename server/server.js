@@ -15,9 +15,9 @@ const app                   = express();
 
 app.use(cors());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname +`/../client/build`)));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname +`/../client/build`)));
 
 /** ======== Session store ======== */
 app.use(session({
@@ -49,3 +49,6 @@ require('./router/google-auth')(app)
 
 //ui handler
 require('./router/ui')(app);
+
+//data handler
+require('./router/data')(app);

@@ -27,7 +27,7 @@ module.exports = (app) => {
             successRedirect: '/profile',
             failureRedirect: '/login' }
         ));
-    app.get('/logout', function(req, res){
+    app.get('/logout', (req, res)=>{
         req.logout();
         res.redirect('/');
     });
