@@ -1,14 +1,11 @@
 const fs = require('fs');
 const utils = require('../utils/utils');
+
 module.exports = (app) => {
     app.get(['/', '/login'], (req, res) => {
-        res.end("Hello .......")
+        res.sendFile(path.join(__dirname + '../client/build/index.html'));
     })
-    app.get('/account', utils.ensureAuthenticated, function (req, res) {
-        res.render('account', { user: req.user });
-    });
     app.get('/profile', utils.ensureAuthenticated, function(req,res){
-        console.log(req);
-        res.send("Authentificated");
+        res.send(req.user);
     })
 }

@@ -16,9 +16,9 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(express.static('client/build'));
 
+/** ======== Session store ======== */
 app.use(session({
     store: new DatastoreStore({
         kind: 'express-sessions',
@@ -31,8 +31,12 @@ app.use(session({
     }),
     resave: true,
     saveUninitialized: true,
-    secret: "Super secret token"
+    secret: "Super secret token",
+    cookie: { secure: false }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+/** ======== Session store ======== */
 
 app.listen(process.env.PORT, (err => {
     if (!err) console.out(`Server ${process.env.SERVER_NAME} running on port ${process.env.PORT}`)

@@ -23,10 +23,10 @@ module.exports = (app) => {
         ));
 
     app.get('/auth/google/callback',
-        passport.authenticate('google', {
+        passport.authenticate('google',{ 
             successRedirect: '/profile',
-            failureRedirect: '/login'
-        }))
+            failureRedirect: '/login' }
+        ));
     app.get('/logout', function(req, res){
         req.logout();
         res.redirect('/');
