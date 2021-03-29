@@ -13,7 +13,14 @@ function findDirections(origin, destination) {
             });
 
             resp.on('end', () => {
-                resolve(JSON.parse(data).routes[0].legs[0].steps[0].html_instructions);
+                totalSteps = (JSON.parse(data).routes[0].legs[0].steps).length;
+                
+                let result = ''
+                for(var i=0; i<totalSteps;i++){
+                    result = result + ' ' + (i+1)+' ' + JSON.parse(data).routes[0].legs[0].steps[i].html_instructions;
+                }
+
+                resolve(result);
             });
 
         }).on("error", (err) => {
