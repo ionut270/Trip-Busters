@@ -13,9 +13,8 @@ const session               = require('express-session');
 const path                  = require('path');
 const app                   = express();
 
-app.use(cors());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname +`/../client/build`)));
+app.use('/static', express.static(path.join(__dirname +`/../client/build/static`)));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
