@@ -10,6 +10,14 @@ table {
   width: 50%;
   border-collapse: collapse; 
 }
+
+#activities_container{
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap !important;
+  justify-content: center;
+  flex-flow: row;
+}
 /* Zebra striping */
 tr:nth-of-type(odd) { 
   background: #eee; 
@@ -25,14 +33,27 @@ td, th {
   text-align: left; 
 }
 
+#checkbox_cell{
+  width: 50px;
+}
+.activity_card{
+  margin: 1em !important;
+}
+
 @media (orientation: portrait) {
   table { 
     margin-top: 1em;
     width: 90% !important;
     border-collapse: collapse; 
   }
-}
-
-#checkbox_cell{
-  width: 50px;
+  #activities_container{
+    margin-top: .1em !important;
+    width: 100% !important;
+    flex-flow: column !important;
+  }
+  .activity_card{
+    width: 90% !important;
+    align-self: center !important;
+    justify-self: center !important;
+  }
 }

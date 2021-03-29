@@ -34,17 +34,10 @@ export default class Header extends React.Component {
           <img id="logo" src={fullLogo} alt="logo" />
         </Menu.Item>
         <Menu.Item
-          name="Home"
+          name="Map"
           className="menu_item header_hidden"
-          active={activeItem === "Home"}
-          href={`${config.server}/home`}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name="Places"
-          className="menu_item header_hidden"
-          active={activeItem === "Places"}
-          href={`${config.server}/places`}
+          active={activeItem === "Map"}
+          href={`${config.server}/map`}
           onClick={this.handleItemClick}
         />
         <Menu.Item

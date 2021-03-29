@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import Auth     from './pages/auth/auth';
 import Profile  from './pages/profile/profile'
 import Calendar from "./pages/calendar/calendar"
+import Map      from "./pages/map/map"
+
 import Footer   from "./components/footer/footer"
 import Header   from "./components/header/header"
 
@@ -18,6 +20,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/profile'>   <Header />    <Profile />   </Route>
           <Route path='/calendar'>  <Header />    <Calendar />  </Route>
+          <Route path='/map'>       <Header />    <Map />  </Route>
           <Route path='/'>                        <Auth />      </Route>
         </Switch>
         <Footer />
