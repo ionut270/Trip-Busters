@@ -12,9 +12,19 @@ const { DatastoreStore }    = require('@google-cloud/connect-datastore');
 const session               = require('express-session');
 const path                  = require('path');
 const app                   = express();
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const passport = require("passport");
+const cookieParser = require('cookie-parser');
+const { Datastore } = require('@google-cloud/datastore');
+const { DatastoreStore } = require('@google-cloud/connect-datastore');
+const session = require('express-session');
+const path = require('path');
+const app = express();
 
 app.use(cookieParser());
-app.use('/static', express.static(path.join(__dirname +`/../client/build/static`)));
+app.use('/static', express.static(path.join(__dirname + `/../client/build/static`)));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -23,7 +33,7 @@ app.use(session({
     store: new DatastoreStore({
         kind: 'express-sessions',
         name: 'trip-busters',
-        expirationMs: 1000*60*60*24, // 24 h
+        expirationMs: 1000 * 60 * 60 * 24, // 24 h
         dataset: new Datastore({
             projectId: process.env.GCLOUD_PROJECT,
             keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
