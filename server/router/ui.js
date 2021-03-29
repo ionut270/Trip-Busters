@@ -6,7 +6,11 @@ module.exports = (app) => {
     app.get(['/', '/login'], (req, res) => {
         res.sendFile(path.join(__dirname + '/../../client/build/index.html'));
     })
-    app.get(['/profile'],utils.ensureAuthenticated, (req, res) => {
+    app.get(['/profile'], utils.ensureAuthenticated, (req, res) => {
         res.sendFile(path.join(__dirname + '/../../client/build/index.html'));
     })
+    app.get(['/map'], utils.ensureAuthenticated, (req, res) => {
+        res.sendFile(path.join(__dirname + '/../../client/build/location.html'));
+    })
+
 }

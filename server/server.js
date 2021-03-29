@@ -2,16 +2,6 @@
 require("dotenv").config();
 console.out = (str) => console.log(`${Date.now()} : ${str}`)
 
-const express               = require("express");
-const bodyParser            = require("body-parser");
-const cors                  = require("cors");
-const passport              = require("passport");
-const cookieParser          = require('cookie-parser');
-const { Datastore }         = require('@google-cloud/datastore');
-const { DatastoreStore }    = require('@google-cloud/connect-datastore');
-const session               = require('express-session');
-const path                  = require('path');
-const app                   = express();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -22,6 +12,7 @@ const { DatastoreStore } = require('@google-cloud/connect-datastore');
 const session = require('express-session');
 const path = require('path');
 const app = express();
+
 
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname + `/../client/build/static`)));
