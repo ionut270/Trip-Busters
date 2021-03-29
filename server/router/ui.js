@@ -12,5 +12,4 @@ module.exports = (app) => {
     app.get(['/map'], utils.ensureAuthenticated, (req, res) => {
         res.sendFile(path.join(__dirname + '/../../client/build/location.html'));
     })
-
 }

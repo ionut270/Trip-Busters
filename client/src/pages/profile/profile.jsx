@@ -24,33 +24,20 @@ export default class App extends React.Component {
     return (
       <div id="profile">
         <Card>
-          {!this.state.user ? (
-            <Dimmer active>
-              <Loader />
-            </Dimmer>
-          ) : null}
+          {!this.state.user ? (<Dimmer active><Loader /></Dimmer>) : null}
 
-          <Image
-            src={this.state.user ? this.state.user.picture : null}
-            wrapped
-            ui={false}
-          />
+          <Image src={this.state.user ? this.state.user.picture : null} wrapped ui={false} />
           <Card.Content>
             <Card.Header>
               {this.state.user ? this.state.user.family_name : null}{" "}
               {this.state.user ? this.state.user.given_name : null}
             </Card.Header>
             <Card.Meta>
-              <span className="date">
-                Locale : {this.state.user ? this.state.user.locale : null}
-              </span>
+              <span className="date">Locale : {this.state.user ? this.state.user.locale : null} </span>
             </Card.Meta>
           </Card.Content>
           <Card.Content extra>
-            <a>
-              <Icon name="mail" />
-              {this.state.user ? this.state.user.email : null}
-            </a>
+              <Icon name="mail" /> {this.state.user ? this.state.user.email : null}
           </Card.Content>
         </Card>
       </div>

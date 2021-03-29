@@ -1,0 +1,38 @@
+#calendar_container {
+  min-height: calc(100vh - 60px - 60px) !important;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+table { 
+  margin-top: 1em;
+  width: 50%;
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
+@media (orientation: portrait) {
+  table { 
+    margin-top: 1em;
+    width: 90% !important;
+    border-collapse: collapse; 
+  }
+}
+
+#checkbox_cell{
+  width: 50px;
+}
