@@ -13,7 +13,7 @@ function findDirections(origin, destination) {
             });
 
             resp.on('end', () => {
-                resolve(data);
+                resolve(JSON.parse(data).routes[0].legs[0].steps[0].html_instructions);
             });
 
         }).on("error", (err) => {
@@ -22,4 +22,4 @@ function findDirections(origin, destination) {
     });
 }
 
-module.exports = {findDirections};
+module.exports = { findDirections };
