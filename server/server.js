@@ -46,6 +46,9 @@ app.listen(process.env.PORT, (err => {
 //auth handler
 require('./router/google-auth')(app)
 
+//google calendar
+require('./router/google-calendar')(app);
+
 //ui handler
 require('./router/ui')(app);
 

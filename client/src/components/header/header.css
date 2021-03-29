@@ -13,3 +13,20 @@
     padding: 0px !important;
     margin: 0px !important;
 }
+
+@media (orientation: portrait) {
+    #header_logo{
+        width: 100%;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .header_hidden{
+        display: none !important;
+    }
+    .menu_item{
+        z-index: 100 !important;
+        background-color: white !important;
+    }
+}
