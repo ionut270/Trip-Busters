@@ -10,7 +10,7 @@ AN user selects a location on the web interface using Maps JavaScript API, that 
 
 ## API - 4
 - Maps JavaScript API
-- Directions API // curent geolocation + maps location => vezi ce returnezi :D 
+- Directions API 
 - Google Calendar API
 - Gmail API
 
