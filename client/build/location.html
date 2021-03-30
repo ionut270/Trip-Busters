@@ -6,12 +6,42 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.js"></script>
     <script src="./static/js/map.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./static/css/map.css">
 </head>
 
-<body>
+<body onload="myFunction()">
+    <div id="floating-panel">
+        <b>Mode of Travel: </b>
+        <select id="mode">
+          <option value="DRIVING">Driving</option>
+          <option value="WALKING">Walking</option>
+          <option value="TRANSIT">Transit</option>
+        </select>
+    </div>
     <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCB-Q9H4SJQAqJOKgRD1b2t6sPSxofXIGs&callback=initMap&libraries=&v=weekly" async></script>
+    <div id="instructions"></div>
+    <script id="mapScript" async></script>
+    <script>
+        function myFunction() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', `/api`, true);
+
+            xhr.responseType = 'text';
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send();
+
+            xhr.onload = function() {
+
+                    if (xhr.status != 200) {
+                        alert(`Error ${xhr.status}: ${xhr.statusText}`);
+                    } else {
+                        document.getElementById("mapScript").src = "https://maps.googleapis.com/maps/api/js?key=" + xhr.responseText + "&callback=initMap&libraries=&v=weekly";
+                    }
+                }
+                //document.getElementById("mapScript").src = "https://maps.googleapis.com/maps/api/js?key=" + "AIzaSyCB-Q9H4SJQAqJOKgRD1b2t6sPSxofXIGs" + "&callback=initMap&libraries=&v=weekly";
+        }
+    </script>
 </body>
 
 </html>

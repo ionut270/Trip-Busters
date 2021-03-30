@@ -2,7 +2,8 @@ let map, infoWindow;
 const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let labelIndex = 0;
 let ok = 0;
-
+let origin;
+let destination;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -12,12 +13,16 @@ function initMap() {
         },
         zoom: 15,
     });
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
-    locationButton.classList.add("custom-map-control-button");
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-        locationButton
-    );
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const directionsService = new google.maps.DirectionsService();
+
+
+    //const locationButton = document.createElement("button");
+    // locationButton.textContent = "Pan to Current Location";
+    // locationButton.classList.add("custom-map-control-button");
+    // map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+    //    locationButton
+    // );
     infoWindow = new google.maps.InfoWindow();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -35,13 +40,44 @@ function initMap() {
                     if (ok != 1) {
                         addMarker(event.latLng, map);
                         ok++;
-                        infoWindow.setContent(`Your Location. <br> Lat: ${pos} <br> Lng: ${pos.lng} <br> Point Selected <br> Lat: ${event.latLng.lat()} <br> Lng: ${event.latLng.lng()} <br> `);
+                        infoWindow.setContent(`Your Location. <br> Lat: ${pos.lat} <br> Lng: ${pos.lng} <br> Point Selected <br> Lat: ${event.latLng.lat()} <br> Lng: ${event.latLng.lng()} <br> `);
+                        origin = { lat: pos.lat, lng: pos.lng };
+                        destination = { lat: event.latLng.lat(), lng: event.latLng.lng() };
                         const sendPos1 = `${pos.lat},${pos.lng}`;
                         const sendPos2 = `${event.latLng.lat()},${event.latLng.lng()}`;
                         //locationButton.href = `/directions?id1=${pos}&id2=${event.latLng}`;
-                        locationButton.addEventListener("click", () => {
-                            window.location.href = `/directions?id1=${sendPos1}&id2=${sendPos2}`;
+                        calculateAndDisplayRoute(directionsService, directionsRenderer);
+                        document.getElementById("mode").addEventListener("change", () => {
+                            calculateAndDisplayRoute(directionsService, directionsRenderer);
                         });
+                        directionsRenderer.setMap(map);
+
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', `/directions?id1=${sendPos1}&id2=${sendPos2}`, true);
+
+                        xhr.responseType = 'text';
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.send();
+
+                        xhr.onload = function() {
+
+                            if (xhr.status != 200) {
+                                alert(`Error ${xhr.status}: ${xhr.statusText}`);
+                            } else {
+                                document.getElementById("instructions").innerHTML = xhr.responseText;
+                            }
+                        }
+
+                        // xmlHttp.open("GET", `/directions?id1=${sendPos1}&id2=${sendPos2}`, true); // true for asynchronous 
+                        //  xmlHttp.send(null);
+                        // document.getElementById("instructions").innerHTML = xmlHttp.responseText;
+                        //console.log("+", xmlHttp.responseText);
+
+
+
+                        //locationButton.addEventListener("click", () => {
+
+                        //});
                     }
                 });
 
@@ -57,6 +93,25 @@ function initMap() {
     }
 }
 
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    const selectedMode = document.getElementById("mode").value;
+    directionsService.route({
+            origin: origin,
+            destination: destination,
+            // Note that Javascript allows us to access the constant
+            // using square brackets and a string value as its
+            // "property."
+            travelMode: google.maps.TravelMode[selectedMode],
+        },
+        (response, status) => {
+            if (status == "OK") {
+                directionsRenderer.setDirections(response);
+            } else {
+                window.alert("Directions request failed due to " + status);
+            }
+        }
+    );
+}
 
 function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label
