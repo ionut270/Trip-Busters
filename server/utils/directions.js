@@ -19,7 +19,7 @@ function findDirections(origin, destination) {
                 for(var i=0; i<totalSteps;i++){
                     result = result + ' ' + (i+1)+' ' + JSON.parse(data).routes[0].legs[0].steps[i].html_instructions;
                 }
-
+                
                 resolve(result);
             });
 

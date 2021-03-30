@@ -1,8 +1,9 @@
   
 const utils = require('../utils/utils');
 const path = require('path');
-const fs = require('fs');
 const directions = require('../utils/directions');
+const stackdriver = require('../utils/stackdriver');
+const fs = require('fs');
 
 module.exports = (app) => {
     app.get(['/', '/login'], (req, res) => {
@@ -16,6 +17,9 @@ module.exports = (app) => {
     })
     app.get(['/directions'], async(req, res) => {
         res.send(await directions.findDirections(req.query.id1, req.query.id2));
+    })
+    app.get(['/metrics'], async(req, res) => {
+        res.send( stackdriver.quickstart());
     })
 
 }
